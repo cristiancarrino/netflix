@@ -1,5 +1,6 @@
 import { Actor } from './actor';
 import { Genre } from './genre';
+import { Vote } from './vote';
 
 export interface Film {
     id: number;
@@ -15,6 +16,8 @@ export interface Film {
     stars: number;
     actors: Actor[];
     genres: Genre[];
-    votes: number[];
+    votes: Vote[];
     vote?: number;
+
+    showFilmMenu?: boolean;
 }

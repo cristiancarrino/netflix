@@ -1,0 +1,44 @@
+.img-container {    
+    position: relative;
+    padding-bottom: 150%;
+    height: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.add-button {
+    position: fixed;
+    bottom: 4rem;
+    right: 2rem;
+    background: white;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+.add-button .ng-fa-icon {
+    position: absolute;
+    top: -2px;
+    font-size: 4rem;
+    line-height: 4rem;
+    color: #4caf50;
+}
+
+.modal-content {
+    height: 100%;
+}
+
+.modal-body {
+    overflow: auto;
+}
+
+.modal-dialog {    
+    height: calc(100% - 3.5rem);
+}

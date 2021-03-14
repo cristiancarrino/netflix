@@ -1,0 +1,11 @@
+.ng-fa-icon {
+    color: orange;
+
+    &.hover {
+        cursor: pointer;
+    
+        &:hover {
+            color: red;
+        }
+    }
+}

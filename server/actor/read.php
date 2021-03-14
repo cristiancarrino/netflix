@@ -6,7 +6,7 @@ require_once '../connection.php';
 
 
 
-$sql = "SELECT actor.*, actor.created_by as createdBy FROM actor";
+$sql = "SELECT actor.*, actor.created_by as created_by FROM actor";
 
 $result = $connection->query($sql);
 

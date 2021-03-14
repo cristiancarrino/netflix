@@ -1,0 +1,53 @@
+.page {
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .page-body {
+        flex-grow: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+        overflow: hidden;
+
+        .page-menu {
+            background: #1F2326;
+            color: white;
+            width: 0;
+            transition: width 1s ease;
+            flex-shrink: 0;
+        
+            &.opened {
+                width: 10rem;
+                overflow: auto;
+                box-sizing: border-box;
+                overflow: auto;
+            }
+
+            .page-menu-item {
+                white-space: nowrap;
+                margin: 1rem;
+                color: white;
+                text-transform: uppercase;
+                display: block;
+                padding: 0.5rem 1rem;
+                border-bottom: 1px solid white;
+                overflow: hidden;
+            
+                &:hover {
+                    background: #32393e;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .page-content {
+            overflow: auto;
+            flex-grow: 1;
+        }
+    }
+
+    .page-footer {
+        background: #1F2326;
+    }
+}

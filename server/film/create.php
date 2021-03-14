@@ -44,10 +44,10 @@ $sql = "
         " . ($film->plot ? "'" . $film->plot . "'" : "NULL") . ",
         " . ($film->director ? "'" . $film->director . "'" : "NULL") . ",
         " . ($film->duration ? "'" . $film->duration . "'" : "NULL") . ",
-        " . ($film->releaseYear ?: 'NULL') . ",
+        " . ($film->release_year ?: 'NULL') . ",
         " . ($film->stars ?: 'NULL') . ",
         " . ($film->tags ? "'" . $film->tags . "'" : "NULL") . ",
-        " . ($film->coverUrl ? "'" . $film->coverUrl . "'" : "NULL") . ",
+        " . ($film->cover_url ? "'" . $film->cover_url . "'" : "NULL") . ",
         " . $user->id . "
     )
 ";
@@ -61,7 +61,7 @@ if (!$result) {
 
 $film->id = $connection->insert_id;
 
-foreach ($film->cast as $actor) {
+foreach ($film->actors as $actor) {
     $sql = "INSERT INTO film_actor (
         film_id,
         actor_id

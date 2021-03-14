@@ -6,7 +6,7 @@ require_once '../connection.php';
 
 
 
-$sql = "SELECT genre.*, genre.created_by as createdBy FROM genre";
+$sql = "SELECT genre.*, genre.created_by as created_by FROM genre";
 
 $result = $connection->query($sql);
 

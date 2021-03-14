@@ -1,1 +1,98 @@
-<p>film-list works!</p>
+<!-- Search bar -->
+<div class="container-fluid mt-3 mb-4">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><fa-icon [icon]="faSearch"></fa-icon></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Search film" [(ngModel)]="search">
+        <div class="input-group-append position-relative" [class.show]="openSearchField">
+            <button class="btn btn-outline-secondary dropdown-toggle" (click)="openSearchField = !openSearchField" type="button">{{ searchField | titlecase }}</button>
+            <div class="dropdown-menu dropdown-menu-right" [class.show]="openSearchField">
+                <button class="dropdown-item" type="button" (click)="setSearchField('title')">Title</button>
+                <button class="dropdown-item" type="button" (click)="setSearchField('genre')">Genre</button>
+                <button class="dropdown-item" type="button" (click)="setSearchField('actor')">Actor</button>
+                <div role="separator" class="dropdown-divider"></div>
+                <button class="dropdown-item" type="button" (click)="setSearchField('director')">Director</button>
+                <button class="dropdown-item" type="button" (click)="setSearchField('tags')">Tags</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="loadingFilms">
+    Loading films...
+</div>
+
+<!-- Lista Film -->
+<div class="container-fluid" *ngIf="!loadingFilms">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let film of films | filmListFilter:search:searchField" (click)="film.showMore = !film.showMore" style="margin-bottom: 30px;">
+            
+            <!-- Film -->
+            <div class="card h-100">
+                <!-- Header del film -->
+                <div class="card-header d-flex">
+                    <div class="mr-auto"><fa-icon [icon]="faClock"></fa-icon> {{ film.duration ? film.duration.slice(0,5) : '--:--' }}</div>
+                    <app-stars [vote]="film.vote" [canEdit]="userService.loggedUser != null && film.created_by == userService.loggedUser.id" (voteChanged)="setVote(film, $event)"></app-stars>
+                    <div class="position-relative ml-3" *ngIf="userService.loggedUser && film.created_by == userService.loggedUser.id">
+                        <fa-icon [icon]="faEllipsisV" (click)="film.showFilmMenu = !film.showFilmMenu" type="button"></fa-icon>
+                        <div class="dropdown-menu dropdown-menu-right" [class.show]="film.showFilmMenu">
+                            <button class="dropdown-item" (click)="film.showFilmMenu = false" routerLink="/films/edit/{{ film.id }}">Edit</button>
+                            <button class="dropdown-item" (click)="remove(film)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Immagine -->
+                <div class="img-container" [ngStyle]="{'background-image': 'url(' + (film.cover_url || 'https://via.placeholder.com/200x300?text=NO+COVER') + ')'}"> </div>
+                
+                <!-- Info -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ film.title }}</h5>
+                    <h6 class="text-info">{{ film.director ? film.director : 'Director unknown' }}<span *ngIf="film.release_year">, {{ film.release_year ? film.release_year : '-'}}</span></h6>
+                    <hr>
+                    <p class="card-text">{{ film.description }}</p>
+                    
+                    <h6>Con:</h6>
+                    <p *ngIf="!film.actors.length">-</p>
+                    <p *ngIf="film.actors.length"><ng-container *ngFor="let actor of film.actors; let isLast = last">{{ actor.firstname + ' ' + actor.lastname + (isLast ? '' : ', ') }}</ng-container></p>
+                    
+                    <h6>Tag:</h6>
+                    <div>{{ film.tags || '-' }}</div>
+                    
+                    <p><a href="" (click)="showPlot(film, $event)">Mostra trama</a></p>
+                </div>
+                
+                <!-- Footer -->
+                <div class="card-footer text-muted">
+                    <div *ngIf="!film.genres.length">-</div>
+                    <div *ngIf="film.genres.length"><ng-container *ngFor="let genre of film.genres; let isLast = last">{{ genre.name + (isLast ? '' : ', ') }}</ng-container></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="add-button" routerLink="/films/add" type="button" *ngIf="userService.loggedUser">
+    <fa-icon [icon]="faPlusCircle"></fa-icon>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" [class.show]="selectedFilm" [ngStyle]="{'display': selectedFilm ? 'block' : 'none' }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ selectedFilm?.title }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hidePlot()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ selectedFilm?.plot }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="hidePlot()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

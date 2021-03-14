@@ -1,0 +1,40 @@
+<div class="page-header">        
+    <fa-icon [icon]="faBars" (click)="openMenu()" class="navbar-button" *ngIf="!menuIsOpen"></fa-icon>
+    <fa-icon [icon]="faTimes" (click)="closeMenu()" class="navbar-button" *ngIf="menuIsOpen"></fa-icon>
+    <div class="title">{{ title }}</div>
+    <div style="flex-grow: 1"></div>
+    <div class="navbar-button">
+        <!-- If you are not logged -->
+        <div *ngIf="!userService.loggedUser" class="position-relative">
+            <div (click)="hideLogin = !hideLogin"><fa-icon [icon]="faUserTimes"></fa-icon> Login</div>
+            
+            <div class="dropdown-menu dropdown-menu-right" [class.show]="!hideLogin">
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" [(ngModel)]="username"  class="form-control" id="username" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" [(ngModel)]="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" [(ngModel)]="rememberMe" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Ricordami</label>
+                    </div>
+                    <button class="btn btn-primary" (click)="login()">Login</button>
+                </div>
+            </div>            
+        </div>
+
+        <!-- If you are logged -->
+        <div *ngIf="userService.loggedUser" class="position-relative">
+            <div (click)="hideLogin = !hideLogin">{{ userService.loggedUser.firstname }} {{ userService.loggedUser.lastname }}</div>
+            
+            <div class="dropdown-menu dropdown-menu-right" [class.show]="!hideLogin">
+                <div class="dropdown-item" (click)="logout()">Logout</div>
+                <div class="dropdown-item">Edit user</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -77,7 +77,7 @@ Authorization: null
   "duration":"",
   "release_year":0,
   "stars":0,
-  "cast":[],
+  "actors":[],
   "genres":[],
   "tags":""
 }
@@ -97,7 +97,7 @@ Authorization: 6a961cc714cc921d
   "duration": "1:40",
   "release_year": 1980,
   "stars": 5,
-  "cast": [
+  "actors": [
     "5",
     "4"
   ],

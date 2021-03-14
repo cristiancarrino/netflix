@@ -47,10 +47,10 @@ $sql = "UPDATE film SET
         plot = " . ($film->plot ? "'" . $film->plot . "'" : "NULL") . ",
         director = " . ($film->director ? "'" . $film->director . "'" : "NULL") . ",
         duration = " . ($film->duration ? "'" . $film->duration . "'" : "NULL") . ",
-        release_year = " . ($film->releaseYear ?: 'NULL') . ",
+        release_year = " . ($film->release_year ?: 'NULL') . ",
         vote = " . ($film->stars ?: 'NULL') . ",
         tags = " . ($film->tags ? "'" . $film->tags . "'" : "NULL") . ",
-        cover_url = " . ($film->coverUrl ? "'" . $film->coverUrl . "'" : "NULL") . "
+        cover_url = " . ($film->cover_url ? "'" . $film->cover_url . "'" : "NULL") . "
         WHERE id = " . $film->id;
 
 if (!$result = $connection->query($sql)) {
@@ -74,7 +74,7 @@ if (!$result = $connection->query($sql)) {
     die('Error executing the query: ' . preg_replace('/\R|\s{2,}/m', '', $sql) . ' : ' . $connection->error);
 }
 
-foreach ($film->cast as $actor) {
+foreach ($film->actors as $actor) {
     $sql = "INSERT INTO film_actor (
         film_id,
         actor_id

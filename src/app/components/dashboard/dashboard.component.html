@@ -1,1 +1,17 @@
-<p>dashboard works!</p>
+<div style="margin-bottom: 100px;"></div>
+
+<div>
+    <h3>Ultimi 4 film inseriti</h3>
+
+    <div *ngFor="let film of lastFilms">
+        {{ film.title }} - {{ film.release_year }}
+    </div>
+</div>
+
+<div>
+    <h3>Top 3 film</h3>
+    
+    <div *ngFor="let film of topFilms">
+        {{ film.title }} - {{ film.stars }}
+    </div>
+</div>

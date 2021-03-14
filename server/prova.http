@@ -1,0 +1,194 @@
+#@host = http://localhost/netflix/server
+@host = https://netflix.cristiancarrino.com
+
+### login
+
+POST {{host}}/user/login.php HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "cris",
+  "password": "cris"
+}
+
+### edit user
+
+POST {{host}}/user/edit.php HTTP/1.1
+Content-Type: application/json
+#NB: I campi username e password sono obbligatori.
+#    Invece i campi newFirstname, newLastname, newUsername, newPassword 
+#    sono facoltativi ma ce ne deve essere almeno uno
+
+{
+  "username": "cris",
+  "password": "cris",
+  "newFirstname": "Cristian",
+  "newLastname": "Carrino",
+  "newUsername": "cris",
+  "newPassword": "cris",
+  "newBirthdate": "1985-06-27"
+}
+
+### favorite films
+
+POST {{host}}/user/favorite-films.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6f2bd32023d2e28d
+
+{
+  "ids": "1,2,3"
+}
+
+### favorite actors
+
+POST {{host}}/user/favorite-actors.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6f2bd32023d2e28d
+
+{
+  "ids": "4,5,6"
+}
+
+### favorite genres
+
+POST {{host}}/user/favorite-genres.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6f2bd32023d2e28d
+
+{
+  "ids": "7,8,9"
+}
+
+### film list
+
+GET {{host}}/film/read.php HTTP/1.1
+Content-Type: application/json
+
+### add film
+
+POST {{host}}/film/create.php HTTP/1.1
+Content-Type: application/json
+Authorization: null
+
+{
+  "title":"asdad",
+  "description":"",
+  "director":"",
+  "duration":"",
+  "release_year":0,
+  "stars":0,
+  "cast":[],
+  "genres":[],
+  "tags":""
+}
+
+
+### edit film
+
+POST {{host}}/film/update.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6a961cc714cc921d
+
+{
+  "id": 51,
+  "title": "The conjuring 2",
+  "description": "Descrizione 1",
+  "director": "Regista 1",
+  "duration": "1:40",
+  "release_year": 1980,
+  "stars": 5,
+  "cast": [
+    "5",
+    "4"
+  ],
+  "genres": [
+    "12",
+    "13"
+  ],
+  "tags": "Bambini, Natale",
+  "cover_url": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-night-flyer-template-7d7861e3d349b92b655900299d774a11_screen.jpg"
+}
+
+### remove film
+
+POST {{host}}/film/delete.php HTTP/1.1
+Content-Type: application/json
+Authorization: 29c3ecad8eaf07ed
+
+{
+  "id": 111
+}
+
+### actor list
+
+GET {{host}}/actor/read.php HTTP/1.1
+Content-Type: application/json
+
+### actor add
+
+POST {{host}}/actor/create.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6a961cc714cc921d
+
+{
+  "firstname": "Gigio",
+  "lastname": "Donnarumma"
+}
+
+### actor edit
+
+POST {{host}}/actor/update.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6a961cc714cc921d
+
+{
+  "id": 3,
+  "firstname": "Christian",
+  "lastname": "De Sica"
+}
+
+### actor remove
+
+POST {{host}}/actor/delete.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6a961cc714cc921d
+
+{
+  "id": 27
+}
+
+### genre list
+
+GET {{host}}/genre/read.php HTTP/1.1
+Content-Type: application/json
+
+### genre add
+
+POST {{host}}/genre/create.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6a961cc714cc921d
+
+{
+  "name": "Zanzibar"
+}
+
+### genre edit
+
+POST {{host}}/genre/update.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6a961cc714cc921d
+
+{
+  "id": 3,
+  "name": "Horror"
+}
+
+### genre remove
+
+POST {{host}}/genre/delete.php HTTP/1.1
+Content-Type: application/json
+Authorization: 6a961cc714cc921d
+
+{
+  "id": 23
+}

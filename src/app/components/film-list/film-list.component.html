@@ -26,15 +26,16 @@
 <!-- Lista Film -->
 <div class="container-fluid" *ngIf="!loadingFilms">
     <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let film of films | filmListFilter:search:searchField" (click)="film.showMore = !film.showMore" style="margin-bottom: 30px;">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let film of films | filmListFilter:search:searchField" style="margin-bottom: 30px;">
             
             <!-- Film -->
             <div class="card h-100">
                 <!-- Header del film -->
                 <div class="card-header d-flex">
                     <div class="mr-auto"><fa-icon [icon]="faClock"></fa-icon> {{ film.duration ? film.duration.slice(0,5) : '--:--' }}</div>
-                    <app-stars [vote]="film.vote" [canEdit]="userService.loggedUser != null && film.created_by == userService.loggedUser.id" (voteChanged)="setVote(film, $event)"></app-stars>
-                    <div class="position-relative ml-3" *ngIf="userService.loggedUser && film.created_by == userService.loggedUser.id">
+                    <app-stars [vote]="film.vote" [canEdit]="false"></app-stars>
+                    <div class="votes-count">({{ film.votes.length }})</div>
+                    <div class="position-relative ml-3" *ngIf="userService.loggedUser != null && film.created_by == userService.loggedUser.id">
                         <fa-icon [icon]="faEllipsisV" (click)="film.showFilmMenu = !film.showFilmMenu" type="button"></fa-icon>
                         <div class="dropdown-menu dropdown-menu-right" [class.show]="film.showFilmMenu">
                             <button class="dropdown-item" (click)="film.showFilmMenu = false" routerLink="/films/edit/{{ film.id }}">Edit</button>
@@ -61,6 +62,8 @@
                     <div>{{ film.tags || '-' }}</div>
                     
                     <p><a href="" (click)="showPlot(film, $event)">Mostra trama</a></p>
+
+                    <p class="my-vote" *ngIf="userService.loggedUser != null">Il tuo voto: <app-stars [vote]="film.vote" [canEdit]="true" (voteChanged)="setVote(film, $event)"></app-stars></p>
                 </div>
                 
                 <!-- Footer -->

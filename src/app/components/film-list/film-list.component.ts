@@ -4,6 +4,7 @@ import { Film } from '../../models/film';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faSearch, faEllipsisV, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../../services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
 	selector: 'app-films',
@@ -64,7 +65,7 @@ export class FilmListComponent implements OnInit {
 	}
 
 	setVote(film: Film, vote: number) {
-		film.stars = vote;
+		film.vote = vote;
 		this.filmService.editFilm(film).subscribe(response => console.log(response))
 	}
 

@@ -1,3 +1,9 @@
+.card-header {
+    .votes-count {
+        margin-left: 10px;
+    }
+}
+
 .img-container {    
     position: relative;
     padding-bottom: 150%;
@@ -7,10 +13,18 @@
     background-size: cover;
 }
 
-.img-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
+.card-body {
+    display: flex;
+    flex-flow: column nowrap;
+    
+    .my-vote {
+        margin: auto 0 0 0;
+        text-align: center;
+    
+        app-stars {
+            margin-left: 10px;
+        }
+    }
 }
 
 .add-button {
@@ -21,24 +35,24 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-}
 
-.add-button .ng-fa-icon {
-    position: absolute;
-    top: -2px;
-    font-size: 4rem;
-    line-height: 4rem;
-    color: #4caf50;
-}
-
-.modal-content {
-    height: 100%;
-}
-
-.modal-body {
-    overflow: auto;
+    .ng-fa-icon {
+        position: absolute;
+        top: -2px;
+        font-size: 4rem;
+        line-height: 4rem;
+        color: #4caf50;
+    }
 }
 
 .modal-dialog {    
     height: calc(100% - 3.5rem);
+
+    .modal-content {
+        height: 100%;
+
+        .modal-body {
+            overflow: auto;
+        }
+    }
 }

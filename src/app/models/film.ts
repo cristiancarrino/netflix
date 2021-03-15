@@ -17,7 +17,8 @@ export interface Film {
     actors: Actor[];
     genres: Genre[];
     votes: Vote[];
-    vote?: number;
+    vote: number;
 
     showFilmMenu?: boolean;
+    showMore?: boolean;
 }

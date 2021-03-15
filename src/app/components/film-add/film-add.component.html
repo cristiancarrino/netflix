@@ -1,1 +1,82 @@
-<p>film-add works!</p>
+<div class="container my-3">
+    <h1>Add film</h1>
+    
+    <hr>
+    
+    <div class="row">
+        <div class="col">            
+            <div class="form-group">
+                <label>Title</label>
+                <input class="form-control" type="text" placeholder="Title" [(ngModel)]="film.title">
+            </div>           
+            <div class="form-group">
+                <label>Cover url</label>
+                <input class="form-control" type="text" placeholder="Cover url" [(ngModel)]="film.coverUrl">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" [(ngModel)]="film.description"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Trama</label>
+                <textarea class="form-control" [(ngModel)]="film.plot" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Director</label>
+                <input class="form-control" type="text" placeholder="Director" [(ngModel)]="film.director">
+            </div>
+            <div class="form-group">
+                <label>Duration</label>
+                <input class="form-control" type="time" placeholder="Duration" [(ngModel)]="film.duration">
+            </div>
+            <div class="form-group">
+                <label>Release Year</label>
+                <input class="form-control" type="number" placeholder="Release Year" [(ngModel)]="film.releaseYear">
+            </div>
+            <div class="form-group">
+                <label>Vote</label>        
+                <div class="input-group mb-2">
+                    <input class="form-control" type="number" min="0" max="5" step="0.5" placeholder="Vote" [(ngModel)]="film.stars">
+                    <div class="input-group-append">
+                        <div class="input-group-text">su 5</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Cast</label>
+                <div>
+                    <button type="button" class="btn btn-sm m-1" *ngFor="let actor of actors" 
+                    (click)="actor.selected = !actor.selected"
+                    [class.btn-secondary]="actor.selected"
+                    [class.btn-outline-secondary]="!actor.selected">
+                    {{ actor.firstname }} {{ actor.lastname }}
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Genres</label>
+                <div>
+                    <button type="button" class="btn btn-sm m-1" *ngFor="let genre of genres" 
+                        (click)="genre.selected = !genre.selected"
+                        [class.btn-secondary]="genre.selected"
+                        [class.btn-outline-secondary]="!genre.selected">
+                        {{ genre.name }}
+                    </button>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label>Tags</label>
+                <input class="form-control" type="text" placeholder="Tags" [(ngModel)]="film.tags">
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" (click)="addFilm()">Add film</button>
+                <button class="btn btn-danger" routerLink="/films">Cancel</button>
+            </div>
+        </div>
+        <div class="col-3">
+            <img [src]="film.coverUrl || 'https://via.placeholder.com/200x300?text=NO+COVER'" alt="" style="width: 100%;">
+        </div>
+    </div>
+</div>

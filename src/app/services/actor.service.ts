@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 	providedIn: 'root'
 })
 export class ActorService {
-	actors: Actor[] = [];
+	actors: Actor[] | null = null;
 	selectedActor: Actor | null = null;
 	newActor: Actor = {
 		id: 0,
@@ -33,19 +33,21 @@ export class ActorService {
 	}
 
 	addActor(): void {
-		this.actors.push(this.newActor);
-		this.localStorage.store('actors', this.actors);
-
-		// Reset newActor
-		this.newActor = {
-			id: 0,
-			firstname: '',
-			lastname: '',
-			birthdate: new Date(),
-			created_by: 0,
-			selected: false,
-			films: []
-		};
+		if (this.actors) {
+			this.actors.push(this.newActor);
+			this.localStorage.store('actors', this.actors);
+	
+			// Reset newActor
+			this.newActor = {
+				id: 0,
+				firstname: '',
+				lastname: '',
+				birthdate: new Date(),
+				created_by: 0,
+				selected: false,
+				films: []
+			};
+		}
 	}
 
 	editActor(): void {

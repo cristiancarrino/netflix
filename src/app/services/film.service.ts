@@ -25,7 +25,6 @@ export class FilmService {
 		} else {
 			return this.http.get<Film[]>(environment.hostApi + '/film/read.php').pipe(
 				tap(response => {
-					console.log('Film scaricati dal server:', response);
 					this.films = response;
 					this.films.forEach(film => {
 						film.vote = (film.votes.reduce((accumulator: number, currentValue: Vote) => {

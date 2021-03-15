@@ -11,7 +11,7 @@
             </div>           
             <div class="form-group">
                 <label>Cover url</label>
-                <input class="form-control" type="text" placeholder="Cover url" [(ngModel)]="film.coverUrl">
+                <input class="form-control" type="text" placeholder="Cover url" [(ngModel)]="film.cover_url">
             </div>
             <div class="form-group">
                 <label>Description</label>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label>Release Year</label>
-                <input class="form-control" type="number" placeholder="Release Year" [(ngModel)]="film.releaseYear">
+                <input class="form-control" type="number" placeholder="Release Year" [(ngModel)]="film.release_year">
             </div>
             <div class="form-group">
                 <label>Vote</label>        
@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="col-3">
-            <img [src]="film.coverUrl || 'https://via.placeholder.com/200x300?text=NO+COVER'" alt="" style="width: 100%;">
+            <img [src]="film.cover_url || 'https://via.placeholder.com/200x300?text=NO+COVER'" alt="" style="width: 100%;">
         </div>
     </div>
 </div>

@@ -34,7 +34,7 @@ export class FilmAddComponent implements OnInit {
 		vote: 0,	
 		showFilmMenu: false,
 		showMore: false
-	}
+	};
 
 	constructor(
 		private router: Router,

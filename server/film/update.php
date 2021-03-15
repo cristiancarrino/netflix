@@ -41,17 +41,19 @@ if (!$connection->query($sql)->fetch_object()) {
     die('You can\'t edit the film. This was not created by you');
 }
 
-$sql = "UPDATE film SET
-        title = " . ($film->title ? "'" . $film->title . "'" : "NULL") . ",
-        description = " . ($film->description ? "'" . $film->description . "'" : "NULL") . ",
-        plot = " . ($film->plot ? "'" . $film->plot . "'" : "NULL") . ",
-        director = " . ($film->director ? "'" . $film->director . "'" : "NULL") . ",
-        duration = " . ($film->duration ? "'" . $film->duration . "'" : "NULL") . ",
-        release_year = " . ($film->release_year ?: 'NULL') . ",
-        vote = " . ($film->stars ?: 'NULL') . ",
-        tags = " . ($film->tags ? "'" . $film->tags . "'" : "NULL") . ",
-        cover_url = " . ($film->cover_url ? "'" . $film->cover_url . "'" : "NULL") . "
-        WHERE id = " . $film->id;
+$sql = "
+    UPDATE film SET title = " . ($film->title ? "'" . addslashes($film->title) . "'" : "NULL") . ",
+    description = " . ($film->description ? "'" . addslashes($film->description) . "'" : "NULL") . ",
+    plot = " . ($film->plot ? "'" . addslashes($film->plot) . "'" : "NULL") . ",
+    director = " . ($film->director ? "'" . addslashes($film->director) . "'" : "NULL") . ",
+    duration = " . ($film->duration ? "'" . addslashes($film->duration) . "'" : "NULL") . ",
+    release_year = " . ($film->release_year ?: 'NULL') . ",
+    
+    tags = " . ($film->tags ? "'" . addslashes($film->tags) . "'" : "NULL") . ",
+    cover_url = " . ($film->cover_url ? "'" . addslashes($film->cover_url) . "'" : "NULL") . "
+    WHERE id = " . $film->id;
+
+    //vote = " . ($film->stars ?: 'NULL') . ",
 
 if (!$result = $connection->query($sql)) {
     http_response_code(500);

@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 	providedIn: 'root'
 })
 export class GenreService {
-	genres: Genre[] = [];
+	genres: Genre[] | null = null
 	selectedGenre: Genre | null = null;
 	newGenre: Genre = {
 		id: 0,

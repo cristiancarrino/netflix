@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostApi: 'http://netflix.cristiancarrino.com'
+  hostApi: 'http://localhost/netflix/server'
 };
 
 /*

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  hostApi: 'http://netflix.cristiancarrino.com'
+  hostApi: 'https://netflix.cristiancarrino.com'
 };

@@ -17,11 +17,6 @@ $username = "qmjxbitg_engim";
 $password = "engimPiemonte";
 $dbname = "qmjxbitg_netflix2";
 
-// $servername = "localhost";
-// $username = "engim";
-// $password = "engim";
-// $dbname = "netflix";
-
 // Create connection
 $connection = new mysqli($servername, $username, $password, $dbname);
 $connection->set_charset("utf8");

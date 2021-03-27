@@ -129,7 +129,7 @@ export class FilmAddComponent implements OnInit {
 		// Invio il film al servizio e se il risultato ha success = true allora torno alla lista film
 		this.filmService.addFilm(this.film).subscribe(response => {
 			if (response.success) {
-				this.router.navigate(['films']);
+				this.router.navigate(['films/list']);
 			}
 		})
 	}

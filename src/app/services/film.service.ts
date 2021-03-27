@@ -26,11 +26,11 @@ export class FilmService {
 			return this.http.get<Film[]>(environment.hostApi + '/film/read.php').pipe(
 				tap(response => {
 					this.films = response;
-					this.films.forEach(film => {
-						film.vote = (film.votes.reduce((accumulator: number, currentValue: Vote) => {
-							return accumulator + parseInt(currentValue.vote + ''); 
-						}, 0) / film.votes.length);
-					});
+					// this.films.forEach(film => {
+					// 	film.vote = (film.votes.reduce((accumulator: number, currentValue: Vote) => {
+					// 		return accumulator + parseInt(currentValue.vote + ''); 
+					// 	}, 0) / film.votes.length);
+					// });
 				}),
 				catchError(error => {
 					alert(error.status + ': ' + error.error);

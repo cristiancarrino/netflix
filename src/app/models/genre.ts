@@ -7,6 +7,6 @@ export interface Genre {
     created_by?: number;
     created_at?: Date;
     films?: Film[];
-    
+
     selected?: boolean;
 }

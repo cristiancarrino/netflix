@@ -148,7 +148,7 @@ export class FilmService {
 
 	getTopFilms(films: Film[]): Film[] {
 		return films.sort((film1, film2) => {
-			return film2.stars - film1.stars;
+			return film2.vote - film1.vote;
 		}).slice(0, 4);
 	}
 }

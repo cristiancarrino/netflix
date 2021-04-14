@@ -34,7 +34,7 @@
                 <div class="card-header d-flex">
                     <div class="mr-auto"><fa-icon [icon]="faClock"></fa-icon> {{ film.duration ? film.duration.slice(0,5) : '--:--' }}</div>
                     <app-stars [vote]="film.vote" [canEdit]="false"></app-stars>
-                    <div class="votes-count">({{ film.votes.length }})</div>
+                    <!-- <div class="votes-count">({{ film.votes.length }})</div> -->
                     <div class="position-relative ml-3" *ngIf="userService.loggedUser != null && film.created_by == userService.loggedUser.id">
                         <fa-icon [icon]="faEllipsisV" (click)="film.showFilmMenu = !film.showFilmMenu" type="button"></fa-icon>
                         <div class="dropdown-menu dropdown-menu-right" [class.show]="film.showFilmMenu">

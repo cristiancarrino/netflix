@@ -1,14 +1,14 @@
 <div class="page">
-	<app-navbar (toggleSidebar)="menuOpened = !menuOpened"></app-navbar>
+	<app-navbar></app-navbar>
 
 	<div class="page-body">
-		<div class="page-menu" [class.opened]="menuOpened">
-			<a routerLink="/films/list" class="page-menu-item">Films</a>
-			<a routerLink="/films/add" class="page-menu-item" *ngIf="userService.loggedUser">Add Film</a>
-			<a routerLink="/actors/list" class="page-menu-item">Actors</a>
-			<a routerLink="/actors/add" class="page-menu-item" *ngIf="userService.loggedUser">Add Actor</a>
-			<a routerLink="/genres/list" class="page-menu-item">Genres</a>
-			<a routerLink="/genres/add" class="page-menu-item" *ngIf="userService.loggedUser">Add Genre</a>
+		<div class="page-menu" [class.opened]="menuService.menuIsOpen">
+			<a routerLink="/films/list" class="page-menu-item" (click)="closeMenu()">Films</a>
+			<a routerLink="/films/add" class="page-menu-item" (click)="closeMenu()" *ngIf="userService.loggedUser">Add Film</a>
+			<a routerLink="/actors/list" class="page-menu-item" (click)="closeMenu()">Actors</a>
+			<a routerLink="/actors/add" class="page-menu-item" (click)="closeMenu()" *ngIf="userService.loggedUser">Add Actor</a>
+			<a routerLink="/genres/list" class="page-menu-item" (click)="closeMenu()">Genres</a>
+			<a routerLink="/genres/add" class="page-menu-item" (click)="closeMenu()" *ngIf="userService.loggedUser">Add Genre</a>
 		</div>
 		<div class="page-content">
 			<router-outlet></router-outlet>

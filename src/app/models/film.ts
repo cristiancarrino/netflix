@@ -9,16 +9,15 @@ export interface Film {
     plot?: string;
     director: string;
     duration: string;
+    vote: number;
     release_year: number;
     cover_url?: string;
     tags: string;
     created_by: number;
-    stars: number;
     actors: Actor[];
     genres: Genre[];
-    votes: Vote[];
-    vote: number;
 
+    votes: Vote[];
     showFilmMenu?: boolean;
     showMore?: boolean;
 }

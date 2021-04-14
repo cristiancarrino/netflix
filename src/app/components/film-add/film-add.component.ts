@@ -15,26 +15,7 @@ import { Router } from '@angular/router';
 export class FilmAddComponent implements OnInit {
 	actors: Actor[] = [];
 	genres: Genre[] = [];
-	pippo = console;
-	film: Film = {
-		id: 0,
-		title: '',
-		description: '',
-		plot: '',
-		director: '',
-		duration: '',
-		release_year: 0,
-		cover_url: '',
-		tags: '',
-		created_by: 0,
-		stars: 0,
-		actors: [],
-		genres: [],
-		votes: [],
-		vote: 0,	
-		showFilmMenu: false,
-		showMore: false
-	};
+	film: Film = this.emptyFilm();
 
 	constructor(
 		private router: Router,
@@ -44,7 +25,7 @@ export class FilmAddComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.resetFilm();
+		this.film = this.emptyFilm();
 
 		// Get actors list
 		this.actoService.getActors().subscribe(actors => {
@@ -99,26 +80,25 @@ export class FilmAddComponent implements OnInit {
 		});
 	}
 
-	resetFilm(): void {
-		this.film = {
+	emptyFilm(): Film {
+		return {
 			id: 0,
 			title: '',
 			description: '',
 			plot: '',
 			director: '',
 			duration: '',
+			vote: 0,	
 			release_year: 0,
 			cover_url: '',
 			tags: '',
 			created_by: 0,
-			stars: 0,
 			actors: [],
 			genres: [],
 			votes: [],
-			vote: 0,	
 			showFilmMenu: false,
 			showMore: false
-		}
+		};
 	}
 
 	addFilm() {

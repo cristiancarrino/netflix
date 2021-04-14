@@ -1,6 +1,6 @@
 <div class="page-header">        
-    <fa-icon [icon]="faBars" (click)="openMenu()" class="navbar-button" *ngIf="!menuIsOpen"></fa-icon>
-    <fa-icon [icon]="faTimes" (click)="closeMenu()" class="navbar-button" *ngIf="menuIsOpen"></fa-icon>
+    <fa-icon [icon]="faBars" (click)="openMenu()" class="navbar-button" *ngIf="!menuService.showCloseButton"></fa-icon>
+    <fa-icon [icon]="faTimes" (click)="closeMenu()" class="navbar-button" *ngIf="menuService.showCloseButton"></fa-icon>
     <div class="title">{{ title }}</div>
     <div style="flex-grow: 1"></div>
     <div class="navbar-button">

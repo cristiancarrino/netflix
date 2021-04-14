@@ -16,12 +16,20 @@
             width: 0;
             transition: width 1s ease;
             flex-shrink: 0;
+            overflow: hidden;
+
+            @media (max-width: 991.98px) {
+                position: fixed;
+                top: 52px;
+                bottom: 56px;
+                left: 0;
+                z-index: 1;
+            }            
         
             &.opened {
                 width: 10rem;
                 overflow: auto;
                 box-sizing: border-box;
-                overflow: auto;
             }
 
             .page-menu-item {

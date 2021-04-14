@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faBars, faTimes, faUserTimes } from '@fortawesome/free-solid-svg-icons';
+import { MenuService } from 'src/app/services/menu.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -8,8 +9,6 @@ import { UserService } from '../../services/user.service';
 	styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-	@Output() toggleSidebar = new EventEmitter();
-
 	//Icons 
 	faBars = faBars;
 	faTimes = faTimes;
@@ -17,14 +16,14 @@ export class NavbarComponent implements OnInit {
 
 	title = 'Netflix';
 	hideLogin: boolean = true;
-	menuIsOpen: boolean = false;
 
 	username: string = '';
 	password: string = '';
 	rememberMe: boolean = false;
 
 	constructor(
-		public userService: UserService
+		public userService: UserService,
+		public menuService: MenuService
 	) { }
 
 	ngOnInit(): void {
@@ -32,13 +31,11 @@ export class NavbarComponent implements OnInit {
 	}
 
 	openMenu(): void {
-		this.toggleSidebar.emit(true);
-		setTimeout(() => this.menuIsOpen = true, 850);
+    	this.menuService.openMenu();
 	}
 
 	closeMenu(): void {
-		this.toggleSidebar.emit(false);
-		setTimeout(() => this.menuIsOpen = false, 850);
+    	this.menuService.closeMenu();
 	}
 
 	login() {

@@ -1,7 +1,7 @@
 <div class="page-header">        
     <fa-icon [icon]="faBars" (click)="openMenu()" class="navbar-button" *ngIf="!menuService.showCloseButton"></fa-icon>
     <fa-icon [icon]="faTimes" (click)="closeMenu()" class="navbar-button" *ngIf="menuService.showCloseButton"></fa-icon>
-    <div class="title">{{ title }}</div>
+    <a routerLink="/dashboard" class="title" (click)="closeMenu()">{{ title }}</a>
     <div style="flex-grow: 1"></div>
     <div class="navbar-button">
         <!-- If you are not logged -->

@@ -10,6 +10,10 @@
         color: red;
         text-transform: uppercase;
         margin-left: 1rem;
+        
+        &:hover {
+            text-decoration: none;
+        }
     }
 
     .navbar-button {

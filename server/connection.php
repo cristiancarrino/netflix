@@ -15,7 +15,7 @@ error_reporting(0);
 $servername = "cristiancarrino.com";
 $username = "qmjxbitg_engim";
 $password = "engimPiemonte";
-$dbname = "qmjxbitg_netflix2";
+$dbname = "qmjxbitg_netflix";
 
 // Create connection
 $connection = new mysqli($servername, $username, $password, $dbname);

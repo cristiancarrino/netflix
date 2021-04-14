@@ -143,7 +143,9 @@ export class FilmService {
 	}
 
 	getLastFilms(films: Film[]): Film[] {
-		return films.slice(-4);
+		return films.sort((film1, film2) => {
+			return (new Date(film2.created_at || '')).getTime() - (new Date(film1.created_at || '')).getTime();
+		}).slice(0, 4);
 	}
 
 	getTopFilms(films: Film[]): Film[] {

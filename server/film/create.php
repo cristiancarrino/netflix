@@ -39,15 +39,15 @@ $sql = "
         created_by
     ) VALUES (
         " . ($film->id ?: 'NULL') . ",
-        " . ($film->title ? "'" . $film->title . "'" : "NULL") . ",
-        " . ($film->description ? "'" . $film->description . "'" : "NULL") . ",
-        " . ($film->plot ? "'" . $film->plot . "'" : "NULL") . ",
-        " . ($film->director ? "'" . $film->director . "'" : "NULL") . ",
-        " . ($film->duration ? "'" . $film->duration . "'" : "NULL") . ",
+        " . ($film->title ? "'" . addslashes($film->title) . "'" : "NULL") . ",
+        " . ($film->description ? "'" . addslashes($film->description) . "'" : "NULL") . ",
+        " . ($film->plot ? "'" . addslashes($film->plot) . "'" : "NULL") . ",
+        " . ($film->director ? "'" . addslashes($film->director) . "'" : "NULL") . ",
+        " . ($film->duration ? "'" . addslashes($film->duration) . "'" : "NULL") . ",
         " . ($film->release_year ?: 'NULL') . ",
-        " . ($film->stars ?: 'NULL') . ",
-        " . ($film->tags ? "'" . $film->tags . "'" : "NULL") . ",
-        " . ($film->cover_url ? "'" . $film->cover_url . "'" : "NULL") . ",
+        " . ($film->vote ?: 'NULL') . ",
+        " . ($film->tags ? "'" . addslashes($film->tags) . "'" : "NULL") . ",
+        " . ($film->cover_url ? "'" . addslashes($film->cover_url) . "'" : "NULL") . ",
         " . $user->id . "
     )
 ";

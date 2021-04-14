@@ -1,5 +1,5 @@
-#@host = http://localhost/netflix/server
-@host = https://netflix.cristiancarrino.com
+@host = http://localhost/netflix/server
+#@host = https://netflix.cristiancarrino.com
 
 ### login
 

@@ -31,9 +31,9 @@ export class FilmListComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.loadingFilms = true;
 		this.filmService.getFilms().subscribe(response => {
 			this.films = response;
+			console.log(response);
 
 			this.shuffle(this.films);
 			this.loadingFilms = false;

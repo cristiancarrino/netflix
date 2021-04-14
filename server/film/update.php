@@ -48,12 +48,10 @@ $sql = "
     director = " . ($film->director ? "'" . addslashes($film->director) . "'" : "NULL") . ",
     duration = " . ($film->duration ? "'" . addslashes($film->duration) . "'" : "NULL") . ",
     release_year = " . ($film->release_year ?: 'NULL') . ",
-    
+    vote = " . ($film->vote ?: 'NULL') . ",
     tags = " . ($film->tags ? "'" . addslashes($film->tags) . "'" : "NULL") . ",
     cover_url = " . ($film->cover_url ? "'" . addslashes($film->cover_url) . "'" : "NULL") . "
     WHERE id = " . $film->id;
-
-    //vote = " . ($film->stars ?: 'NULL') . ",
 
 if (!$result = $connection->query($sql)) {
     http_response_code(500);

@@ -46,4 +46,8 @@ export class UserService {
 		this.loggedUser = null;
 		this.localStorage.clear('loggedUser');
 	}
+
+	editUserInfo(): void {
+		
+	}
 }

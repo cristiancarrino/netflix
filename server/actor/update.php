@@ -86,11 +86,11 @@ if (!$connection->query($sql)->fetch_object()) {
 
 
 
-$sql = "UPDATE actor SET
-
-        firstname = " . ($actor->firstname ? "'" . $actor->firstname . "'" : "NULL") . ",
-
-        lastname = " . ($actor->lastname ? "'" . $actor->lastname . "'" : "NULL") . "
+$sql = "UPDATE actor SET 
+        firstname = " . ($actor->firstname ? "'" . addslashes($actor->firstname) . "'" : "NULL") . ",
+        lastname = " . ($actor->lastname ? "'" . addslashes($actor->lastname) . "'" : "NULL") . ",
+        photo_url = " . ($actor->photo_url ? "'" . addslashes($actor->photo_url) . "'" : "NULL") . ",
+        birthdate = " . ($actor->birthdate ? "'" . addslashes($actor->birthdate) . "'" : "NULL") . "
 
         WHERE id = " . $actor->id;
 

@@ -3,47 +3,47 @@
 require_once '../connection.php';
 
 // Get json post data
-$jsonPostdata = file_get_contents("php://input");
-
-if (!$jsonPostdata) {
+if (!$jsonPostdata = file_get_contents("php://input")) {
     http_response_code(400);
     die('Missing Payload');
 }
 
-$credential = json_decode($jsonPostdata);
-
-$sql = "
-    SELECT *
+$sql = "SELECT *
     FROM user
-    WHERE username = '" . $credential->username . "'
-    AND password = '" . $credential->password . "'
+    WHERE token = '" . ($headers['Authorization'] ?: $headers['authorization']) . "'
 ";
 
-if (!$connection->query($sql)->fetch_object()) {
-    http_response_code(404);
-    die('No user with this username and password was found');
+if (!$user = $connection->query($sql)->fetch_object()) {
+    http_response_code(401);
+    die('No user with this token was found. Try to generate new token by login again');
 }
+
+$info = json_decode($jsonPostdata);
 
 $fields = [];
 
-if ($credential->newFirstname) {
-    $fields[] = "firstname = '" . $credential->newFirstname . "'";
+if ($info->username) {
+    $fields[] = "username = '" . $info->username . "'";
 }
 
-if ($credential->newLastname) {
-    $fields[] = "lastname = '" . $credential->newLastname . "'";
+if ($info->password) {
+    $fields[] = "password = '" . $info->password . "'";
 }
 
-if ($credential->newUsername) {
-    $fields[] = "username = '" . $credential->newUsername . "'";
+if ($info->firstname) {
+    $fields[] = "firstname = '" . $info->firstname . "'";
 }
 
-if ($credential->newPassword) {
-    $fields[] = "password = '" . $credential->newPassword . "'";
+if ($info->lastname) {
+    $fields[] = "lastname = '" . $info->lastname . "'";
 }
 
-if ($credential->newBirthdate) {
-    $fields[] = "birthdate = '" . $credential->newBirthdate . "'";
+if ($info->photo_url) {
+    $fields[] = "photo_url = '" . $info->photo_url . "'";
+}
+
+if ($info->birthdate) {
+    $fields[] = "birthdate = '" . $info->birthdate . "'";
 }
 
 if (!count($fields)) {
@@ -54,8 +54,7 @@ if (!count($fields)) {
 $sql = "
     UPDATE user SET
     " . implode(", ", $fields) . "
-    WHERE username = '" . $credential->username . "'
-    AND password = '" . $credential->password . "'
+    WHERE token = '" . $user->token . "'
 ";
 
 if (!$connection->query($sql)) {

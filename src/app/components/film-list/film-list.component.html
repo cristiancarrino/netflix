@@ -59,7 +59,7 @@
                     <p *ngIf="film.actors.length"><ng-container *ngFor="let actor of film.actors; let isLast = last">{{ actor.firstname + ' ' + actor.lastname + (isLast ? '' : ', ') }}</ng-container></p>
                     
                     <h6>Tag:</h6>
-                    <div>{{ film.tags || '-' }}</div>
+                    <div class="mb-3">{{ film.tags || '-' }}</div>
                     
                     <p><a href="" (click)="showPlot(film, $event)">Mostra trama</a></p>
 

@@ -44,7 +44,7 @@ export class FilmService {
 		let loggedUser = this.userService.getLoggedUser();
 
 		if (!loggedUser) {
-			alert('please login');
+			alert('Please login before');
 			return of(false);
 		}
 
@@ -55,7 +55,7 @@ export class FilmService {
 			})
 		};
 
-		console.log('Provo ad aggiungere il film:', film);
+		console.log('Adding film:', film);
 		return this.http.post<any>(environment.hostApi + '/film/create.php', film, httpOptions).pipe(
 			tap(response => {
 				if (response.success) {
@@ -78,7 +78,7 @@ export class FilmService {
 		let loggedUser = this.userService.getLoggedUser();
 
 		if (!loggedUser) {
-			alert('please login');
+			alert('Please login before');
 			return of(false);
 		}
 
@@ -89,7 +89,7 @@ export class FilmService {
 			})
 		};
 
-		console.log('Provo ad editare il film:', film);
+		console.log('Editing film:', film);
 		return this.http.post<any>(environment.hostApi + '/film/update.php', film, httpOptions).pipe(
 			tap(response => {
 				console.log(response);

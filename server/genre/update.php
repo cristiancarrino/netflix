@@ -86,13 +86,10 @@ if (!$connection->query($sql)->fetch_object()) {
 
 
 
-$sql = "UPDATE genre SET
-
-        name = " . ($genre->name ? "'" . $genre->name . "'" : "NULL") . "
-
+$sql = "UPDATE genre SET 
+        name = " . ($genre->name ? "'" . addslashes($genre->name) . "'" : "NULL") . ",
+        image_url = " . ($genre->image_url ? "'" . addslashes($genre->image_url) . "'" : "NULL") . "
         WHERE id = " . $genre->id;
-
-
 
 $result = $connection->query($sql);
 

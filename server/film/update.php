@@ -13,14 +13,17 @@ $sql = "SELECT *
     WHERE token = '" . ($headers['Authorization'] ?: $headers['authorization']) . "'
 ";
 
-;
-
 if (!$user = $connection->query($sql)->fetch_object()) {
     http_response_code(401);
     die('No user with this token was found. Try to generate new token by login again');
 }
 
 $film = json_decode($jsonPostdata);
+
+if (!$film->id) {
+    http_response_code(400);
+    die('Missing film id');
+}
 
 $sql = "SELECT *
     FROM film

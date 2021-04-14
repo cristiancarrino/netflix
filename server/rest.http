@@ -15,25 +15,24 @@ Content-Type: application/json
 
 POST {{host}}/user/edit.php HTTP/1.1
 Content-Type: application/json
-#NB: I campi username e password sono obbligatori.
-#    Invece i campi newFirstname, newLastname, newUsername, newPassword 
-#    sono facoltativi ma ce ne deve essere almeno uno
+Authorization: 28d66a4bc37586b6
+# NB: tutti i campi sono facoltativi
+# Mettere solo quelli che si vogliono modificare
 
 {
   "username": "cris",
   "password": "cris",
-  "newFirstname": "Cristian",
-  "newLastname": "Carrino",
-  "newUsername": "cris",
-  "newPassword": "cris",
-  "newBirthdate": "1985-06-27"
+  "firstname": "Cristian",
+  "lastname": "Carrino",
+  "photo_url": "https://www.ausmanre.it/wp-content/uploads/2020/05/avatar.jpg",
+  "birthdate": "1985-06-27"
 }
 
 ### favorite films
 
 POST {{host}}/user/favorite-films.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6f2bd32023d2e28d
+Authorization: 28d66a4bc37586b6
 
 {
   "ids": "1,2,3"
@@ -43,7 +42,7 @@ Authorization: 6f2bd32023d2e28d
 
 POST {{host}}/user/favorite-actors.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6f2bd32023d2e28d
+Authorization: 28d66a4bc37586b6
 
 {
   "ids": "4,5,6"
@@ -53,7 +52,7 @@ Authorization: 6f2bd32023d2e28d
 
 POST {{host}}/user/favorite-genres.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6f2bd32023d2e28d
+Authorization: 28d66a4bc37586b6
 
 {
   "ids": "7,8,9"
@@ -68,18 +67,20 @@ Content-Type: application/json
 
 POST {{host}}/film/create.php HTTP/1.1
 Content-Type: application/json
-Authorization: null
+Authorization: 28d66a4bc37586b6
 
 {
-  "title":"asdad",
-  "description":"",
-  "director":"",
-  "duration":"",
-  "release_year":0,
-  "stars":0,
-  "actors":[],
-  "genres":[],
-  "tags":""
+  "title": "Prova rest",
+  "description": "Description",
+  "plot": "Plot",
+  "director": "Director",
+  "duration": "34:78",
+  "vote": 4.5,
+  "release_year": 1985,
+  "cover_url": "https://www.ausmanre.it/wp-content/uploads/2020/05/avatar.jpg",
+  "tags": "tag1, tag2, tag3",
+  "actors": [{"id": 1}, {"id": 17}, {"id": 20}],
+  "genres": [{"id": 6}, {"id": 10}, {"id": 12}]
 }
 
 
@@ -87,36 +88,31 @@ Authorization: null
 
 POST {{host}}/film/update.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6a961cc714cc921d
+Authorization: 28d66a4bc37586b6
 
 {
-  "id": 51,
-  "title": "The conjuring 2",
-  "description": "Descrizione 1",
-  "director": "Regista 1",
-  "duration": "1:40",
-  "release_year": 1980,
-  "stars": 5,
-  "actors": [
-    "5",
-    "4"
-  ],
-  "genres": [
-    "12",
-    "13"
-  ],
-  "tags": "Bambini, Natale",
-  "cover_url": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-night-flyer-template-7d7861e3d349b92b655900299d774a11_screen.jpg"
+  "id": 98,
+  "title": "Provaaaaaaaaaaa rest",
+  "description": "Description",
+  "plot": "Plot",
+  "director": "Director",
+  "duration": "34:78",
+  "vote": 4.5,
+  "release_year": 1985,
+  "cover_url": "https://www.ausmanre.it/wp-content/uploads/2020/05/avatar.jpg",
+  "tags": "tag1, tag2, tag3",
+  "actors": [{"id": 1}],
+  "genres": [{"id": 6}]
 }
 
 ### remove film
 
 POST {{host}}/film/delete.php HTTP/1.1
 Content-Type: application/json
-Authorization: 29c3ecad8eaf07ed
+Authorization: 28d66a4bc37586b6
 
 {
-  "id": 111
+  "id": 98
 }
 
 ### actor list
@@ -128,33 +124,37 @@ Content-Type: application/json
 
 POST {{host}}/actor/create.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6a961cc714cc921d
+Authorization: 28d66a4bc37586b6
 
 {
   "firstname": "Gigio",
-  "lastname": "Donnarumma"
+  "lastname": "Donnarumma",
+  "photo_url": "https://www.ausmanre.it/wp-content/uploads/2020/05/avatar.jpg",
+  "birthdate": "1982-11-12"
 }
 
 ### actor edit
 
 POST {{host}}/actor/update.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6a961cc714cc921d
+Authorization: 28d66a4bc37586b6
 
 {
-  "id": 3,
+  "id": 122,
   "firstname": "Christian",
-  "lastname": "De Sica"
+  "lastname": "De Sica",
+  "photo_url": "https://www.ausmanre.it/wp-content/uploads/2020/05/avatar.jpg",
+  "birthdate": "1982-11-12"
 }
 
 ### actor remove
 
 POST {{host}}/actor/delete.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6a961cc714cc921d
+Authorization: 28d66a4bc37586b6
 
 {
-  "id": 27
+  "id": 122
 }
 
 ### genre list
@@ -166,29 +166,31 @@ Content-Type: application/json
 
 POST {{host}}/genre/create.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6a961cc714cc921d
+Authorization: 28d66a4bc37586b6
 
 {
-  "name": "Zanzibar"
+  "name": "Zanzibar",
+  "image_url": "https://www.ausmanre.it/wp-content/uploads/2020/05/avatar.jpg"
 }
 
 ### genre edit
 
 POST {{host}}/genre/update.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6a961cc714cc921d
+Authorization: 28d66a4bc37586b6
 
 {
-  "id": 3,
-  "name": "Horror"
+  "id": 29,
+  "name": "Miao",
+  "image_url": "---"
 }
 
 ### genre remove
 
 POST {{host}}/genre/delete.php HTTP/1.1
 Content-Type: application/json
-Authorization: 6a961cc714cc921d
+Authorization: 28d66a4bc37586b6
 
 {
-  "id": 23
+  "id": 29
 }

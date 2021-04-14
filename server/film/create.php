@@ -26,7 +26,6 @@ $film = json_decode($jsonPostdata);
 
 $sql = "
     INSERT INTO film (
-        id,
         title,
         description,
         plot,
@@ -38,7 +37,6 @@ $sql = "
         cover_url,
         created_by
     ) VALUES (
-        " . ($film->id ?: 'NULL') . ",
         " . ($film->title ? "'" . addslashes($film->title) . "'" : "NULL") . ",
         " . ($film->description ? "'" . addslashes($film->description) . "'" : "NULL") . ",
         " . ($film->plot ? "'" . addslashes($film->plot) . "'" : "NULL") . ",

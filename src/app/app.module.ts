@@ -30,6 +30,7 @@ import { GenreListComponent } from './components/genre-list/genre-list.component
 import { GenreAddComponent } from './components/genre-add/genre-add.component';
 import { GenreEditComponent } from './components/genre-edit/genre-edit.component';
 import { FilmListFilterPipe } from './pipes/film-list-filter.pipe';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { FilmListFilterPipe } from './pipes/film-list-filter.pipe';
 		GenreEditComponent,
 		NavbarComponent,
 		StarsComponent,
-		FilmListFilterPipe
+		FilmListFilterPipe,
+		UserEditComponent
 	],
 	imports: [
 		BrowserModule,

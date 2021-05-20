@@ -33,7 +33,7 @@
             
             <div class="dropdown-menu dropdown-menu-right" [class.show]="!hideLogin">
                 <div class="dropdown-item" (click)="logout()">Logout</div>
-                <div class="dropdown-item">Edit user</div>
+                <a class="dropdown-item" routerLink="/user/edit">Edit user</a>
             </div>
         </div>
     </div>

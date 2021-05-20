@@ -26,8 +26,12 @@ export class UserService {
 			tap(response => {
 				this.loggedUser = response;
 
-				if (rememberMe) {
-					this.localStorage.store('loggedUser', this.loggedUser);
+				if (this.loggedUser) {
+					this.loggedUser.rememberMe = rememberMe;
+	
+					if (rememberMe) {
+						this.localStorage.store('loggedUser', this.loggedUser);
+					}
 				}
 			}),
 			catchError(error => {
@@ -47,7 +51,32 @@ export class UserService {
 		this.localStorage.clear('loggedUser');
 	}
 
-	editUserInfo(): void {
-		
+	editUser(user: any): Observable<User | null> {		
+		if (!this.loggedUser) {
+			alert('Please login before');
+			return of(null);
+		}
+
+		let httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type': 'application/json',
+				'Authorization': this.loggedUser.token
+			})
+		};
+
+		return this.http.post<User>(environment.hostApi + '/user/edit.php', user, httpOptions)
+		.pipe(
+			tap(response => {
+				this.loggedUser = { ...this.loggedUser,  ...response };
+
+				if (this.loggedUser.rememberMe) {
+					this.localStorage.store('loggedUser', this.loggedUser);
+				}
+			}),
+			catchError(error => {
+				alert(error.status + ': ' + error.error);
+				return of(null);
+			})
+		);
 	}
 }

@@ -1,0 +1,42 @@
+<div class="container my-3">
+    <h1>Edit User</h1>
+    
+    <hr>
+    
+    <div class="row">
+        <div class="col">            
+            <div class="form-group">
+                <label>Username</label>
+                <input class="form-control" type="text" placeholder="Username" [(ngModel)]="user.username">
+            </div>           
+            <div class="form-group">
+                <label>Password</label>
+                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="user.password">
+            </div>           
+            <div class="form-group">
+                <label>Firstname</label>
+                <input class="form-control" type="text" placeholder="Firstname" [(ngModel)]="user.firstname">
+            </div>           
+            <div class="form-group">
+                <label>Lastname</label>
+                <input class="form-control" type="text" placeholder="Lastname" [(ngModel)]="user.lastname">
+            </div>         
+            <div class="form-group">
+                <label>Photo Url</label>
+                <input class="form-control" type="text" placeholder="Photo Url" [(ngModel)]="user.photo_url">
+            </div>          
+            <div class="form-group">
+                <label>Date of birth</label>
+                <input class="form-control" type="date" placeholder="Date of birth" [(ngModel)]="user.birthdate">
+            </div>      
+            
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" (click)="editUser()">Edit User</button>
+                <button class="btn btn-danger" routerLink="/films">Cancel</button>
+            </div>
+        </div>
+        <div class="col-3">
+            <img [src]="user.photo_url || 'https://via.placeholder.com/200x300?text=NO+IMAGE'" alt="" style="width: 100%;">
+        </div>
+    </div>
+</div>

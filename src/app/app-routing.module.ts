@@ -10,6 +10,7 @@ import { FilmListComponent } from './components/film-list/film-list.component';
 import { GenreAddComponent } from './components/genre-add/genre-add.component';
 import { GenreEditComponent } from './components/genre-edit/genre-edit.component';
 import { GenreListComponent } from './components/genre-list/genre-list.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'genres/list', component: GenreListComponent },
   { path: 'genres/add', component: GenreAddComponent },
   { path: 'genres/edit/:id', component: GenreEditComponent },
+  { path: 'user/edit', component: UserEditComponent }
 ];
 
 @NgModule({

@@ -11,4 +11,6 @@ export interface User {
     favorite_genres: number[];
     token: string;
     last_login: Date;
+
+	rememberMe: boolean;
 }

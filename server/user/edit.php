@@ -13,7 +13,12 @@ $sql = "SELECT *
     WHERE token = '" . ($headers['Authorization'] ?: $headers['authorization']) . "'
 ";
 
-if (!$user = $connection->query($sql)->fetch_object()) {
+if (!$query = $connection->query($sql)) {
+    http_response_code(500);
+    die('Error executing the query: ' . preg_replace('/\R|\s{2,}/m', '', $sql) . ' : ' . $connection->error);
+}
+
+if (!$user = $query->fetch_object()) {
     http_response_code(401);
     die('No user with this token was found. Try to generate new token by login again');
 }
@@ -62,7 +67,23 @@ if (!$connection->query($sql)) {
     die('Error executing the query: ' . preg_replace('/\R|\s{2,}/m', '', $sql) . ' : ' . $connection->error);
 }
 
+$sql = "
+    SELECT *
+    FROM user
+    WHERE token = '" . $user->token . "'
+";
+
+if (!$query = $connection->query($sql)) {
+    http_response_code(500);
+    die('Error executing the query: ' . preg_replace('/\R|\s{2,}/m', '', $sql) . ' : ' . $connection->error);
+}
+
+if (!$user = $query->fetch_object()) {
+    http_response_code(401);
+    die('Error retrieving user after update');
+}
+
 $connection->close();
 
-die('{ "success": true, "message": "User edited succesfully" }');
+echo json_encode($user);
 ?>
